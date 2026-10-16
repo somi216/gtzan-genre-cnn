@@ -1,0 +1,14 @@
+seed: 42
+data:
+  raw_dir: data/raw/Data/genres_original
+  cache_dir: data/processed
+  sr: 12000
+  n_fft: 512
+  hop: 256
+  n_mels: 96
+  seg_sec: 3
+train:
+  batch_size: 64
+  spochs: 30
+  lr: 0.001
+  num_workers: 4
