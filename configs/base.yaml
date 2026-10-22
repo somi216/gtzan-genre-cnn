@@ -9,6 +9,6 @@ data:
   seg_sec: 3
 train:
   batch_size: 64
-  spochs: 30
+  epochs: 100
   lr: 0.001
-  num_workers: 4
+  num_workers: 0

@@ -28,7 +28,7 @@ class MelSegmentDataset(Dataset):
         mel = self.mels[i]
         T = mel.shape[1]
         if self.train:
-            s = random.radint(0,T - self.seg)
+            s = random.randint(0,T - self.seg)
         else:
             s = (T- self.seg)//2
         x = np.array(mel[:, s:s+self.seg])
