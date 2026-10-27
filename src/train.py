@@ -34,7 +34,8 @@ def main(cfg_path):
     sample = np.concatenate([np.load(f)[:, ::10].ravel() for f in trf])
     mean, std = float(sample.mean()), float(sample.std())
 
-    tr_ds = MelSegmentDataset(trf, trl, seg_frames, True, mean, std)
+    tr_ds = MelSegmentDataset(trf, trl, seg_frames, True, mean, std,
+                          repeat=t.get("repeat", 1))
     va_ds = MelSegmentDataset(vaf, val, seg_frames, False, mean, std)
     tr_ld = DataLoader(tr_ds, t["batch_size"], shuffle=True,
                        num_workers=t["num_workers"])

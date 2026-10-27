@@ -12,3 +12,4 @@ train:
   epochs: 100
   lr: 0.001
   num_workers: 0
+  repeat: 8

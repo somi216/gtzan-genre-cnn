@@ -15,16 +15,18 @@ def split_files(cache_dir, seed):
     return (tr, ytr), (va, yva), (te, yte), genres
 
 class MelSegmentDataset(Dataset):
-    def __init__(self, files, labels, seg_frames, train, mean, std):
+    def __init__(self, files, labels, seg_frames, train, mean, std, repeat=1):
         self.files, self.labels = files, labels
         self.seg, self.train = seg_frames, train
         self.mean, self.std = mean, std
+        self.repeat = repeat
         self.mels = [np.load(f, mmap_mode="r") for f in files]
 
     def __len__(self):
-        return len(self.files)
+        return len(self.files) * self.repeat
 
     def __getitem__(self, i):
+        i = i % len(self.files)
         mel = self.mels[i]
         T = mel.shape[1]
         if self.train:
